@@ -88,6 +88,10 @@ app.delete('/deleteItem', (request, response) => {
 
 })
 
-app.listen(process.env.PORT || PORT, ()=>{
-    console.log(`Server running on port ${PORT}`)
-})
+client.connect(err => {
+    if(err){ console.error(err); return false;}
+    // connection to mongo is successful, listen for requests
+    app.listen(process.env.PORT || PORT, () => {
+        console.log(`Server running on port ${PORT}`);
+    })
+});
